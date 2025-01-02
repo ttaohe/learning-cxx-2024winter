@@ -4,15 +4,24 @@
 
 unsigned long long arr[90]{0, 1};
 unsigned long long fibonacci(int i) {
-    switch (i) {
-        case 0:
-            return 0;
-        case 1:
-            return 1;
-        default:
-            // TODO: 补全三目表达式缺失的部分
-            return i == 2 ? 1 : (arr[i] = fibonacci(i - 1) + fibonacci(i - 2));
+    // switch (i) {
+    //     case 0:
+    //         return 0;
+    //     case 1:
+    //         return 1;
+    //     default:
+    //         // TODO: 补全三目表达式缺失的部分
+    //         return i == 2 ? 1 : (arr[i] = fibonacci(i - 1) + fibonacci(i - 2));
+    // }
+    if (i < 2) {
+        return arr[i];
     }
+    if (arr[i] != 0) {
+        return arr[i]; // 如果已经计算过，直接返回结果
+    }
+    // 计算斐波那契数并存储结果
+    arr[i] = fibonacci(i - 1) + fibonacci(i - 2);
+    return arr[i];
 }
 
 int main(int argc, char **argv) {
